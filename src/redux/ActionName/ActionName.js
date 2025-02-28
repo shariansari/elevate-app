@@ -1,0 +1,3 @@
+export const SET_API_JSON = 'SET_API_JSON'
+export const SET_API_JSON_ERROR = 'SET_API_JSON_ERROR'
+export const SET_USER_DATA = 'SET_USER_DATA'
