@@ -16,11 +16,9 @@ function Register() {
     const ApiReducer = useSelector(state => state.ApiReducer);
     const dispatch = useDispatch();
     const navigation = useNavigation();
-
     const navigatetoSignIn = () => {
         navigation.navigate("Login");
     };
-
 
     const handleClick = ()=>{
         RegisterValidation(ApiReducer?.apiJson).then((error)=>{
@@ -29,7 +27,6 @@ function Register() {
         })
 
     }
-
     return (
         <ScrollView style={{ backgroundColor: Colors.LOGINBG }}>
             <View style={{ paddingTop: 50, paddingHorizontal: 30 }}>
