@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Text, View } from 'react-native'
 import { useDispatch,useSelector } from 'react-redux';
 import MainNavigation from './MainNavigation';
 import LoginNavigation from './LoginNavigation';
+import { setUserData } from '../redux/Actions/ApiAction';
+import { _getUserData } from '../storage/Storage';
 
 
 function SwitchNavigation() {
@@ -11,6 +13,23 @@ function SwitchNavigation() {
     const reduxUser = useSelector(state => state.AuthReducer)
 
     console.log("reduxUser",reduxUser);
+
+    useEffect(() => {
+
+        if (reduxUser.doc === null) {
+    
+          _getUserData().then((doc) => {
+
+            console.log("doc",doc);
+            
+            if (doc !== undefined) {
+              dispatch(setUserData(doc))
+            }
+          })
+        }
+       
+     
+      }, [reduxUser])
     
 
   return (
