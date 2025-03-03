@@ -18,16 +18,16 @@ export const RegisterValidation = (json) => {
         if (json?.confirmPassword === "" || json.confirmPassword == undefined) {
             Object.assign(errorJson, { confirmPassword: "Field cannot be empty *" })
         }
-        if (json?.contactno === "" || json.contactno == undefined) {
-            Object.assign(errorJson, { contactno: "Field cannot be empty *" })
+        if (json?.contact === "" || json.contact == undefined) {
+            Object.assign(errorJson, { contact: "Field cannot be empty *" })
         }
         if (json?.email?.length > 0) {
             if (!REGXEMAIL.test(json?.email)) {
                 Object.assign(errorJson, { email: "Invalid Email Address *" })
             }
         }
-        if (json?.contactno?.length > 0 && json?.contactno?.length !== 10) {
-            Object.assign(errorJson, { contactno: "Invalid Mobile no. *" })
+        if (json?.contact?.length > 0 && json?.contact?.length !== 10) {
+            Object.assign(errorJson, { contact: "Invalid Mobile no. *" })
         }
         if (json?.password?.length > 0) {
             if (!STROGNPASSWORD.test(json?.password)) {

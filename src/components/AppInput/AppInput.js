@@ -49,7 +49,7 @@ function AppInput({ icon, placeholder, name,error }) {
         </View>
         <View style={{height:20}}>
             {
-                error && <Text style={{color:Colors.ERROR,fontSize:12 ,marginTop:5}}>Hello Akshara</Text>
+                error && <Text style={{color:Colors.ERROR,fontSize:12 ,marginTop:5}}>{ ApiReducer?.apiJsonError?.[name]}</Text>
             }
         </View>
        </View>
