@@ -4,7 +4,8 @@ const Colors = {
     INPUTBG :"#F8F8F8",
     PRIMARY :"#6D5AE6",
     LOGINBG :'white',
-    ERROR :"red"
+    ERROR :"red",
+    SKIN :'#F8F8F8',
 
 
 };
