@@ -7,6 +7,8 @@ import { Provider } from 'react-redux';
 import SwitchNavigation from './src/navigation/SwitchNavigation';
 
 
+
+
 const Stack = createNativeStackNavigator();
 function App() {
   return (

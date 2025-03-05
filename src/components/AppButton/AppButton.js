@@ -6,8 +6,8 @@ function AppButton({text,onPress}) {
 
   return (
   <TouchableOpacity onPress={onPress}>
-      <View style={{backgroundColor:Colors.PRIMARY ,alignItems:'center',paddingVertical:20,borderRadius:15 }}>
-      <Text style={{fontSize:16,fontWeight:'bold',color:"white" }}>{text}</Text>
+      <View style={{backgroundColor:Colors.PRIMARY ,alignItems:'center',paddingVertical:15,borderRadius:15 }}>
+      <Text style={{fontSize:16,color:"white",fontFamily:'Poppins-SemiBold' }}>{text}</Text>
     </View>
   </TouchableOpacity>
   )
