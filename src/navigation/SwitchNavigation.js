@@ -34,7 +34,7 @@ function SwitchNavigation() {
 
   return (
     <>
-    {reduxUser.doc !== null ? <MainNavigation /> : <LoginNavigation /> }
+    {reduxUser.doc !== !null ? <MainNavigation /> : <LoginNavigation /> }
 </>
   )
 }
