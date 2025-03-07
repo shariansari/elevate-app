@@ -45,8 +45,12 @@ function Home() {
           <Text style={{ color: Colors.LIGHTTEXT, fontFamily: 'Poppins-Regular' }}>View All</Text>
         </View>
       </View>
-      <View style={{marginTop:10}}>
+      <View style={{marginTop:10 ,flexDirection:'column',gap:20}}>
       <NearestCard image={'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80%27'} />
+      <NearestCard image={'https://images.unsplash.com/photo-1596704017254-9b121068fb31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80%27'} />
+      <NearestCard image={'https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80%27'} />
+
+
       </View>
     </View>
   </ScrollView>
