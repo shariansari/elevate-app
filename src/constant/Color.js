@@ -6,7 +6,9 @@ const Colors = {
     LOGINBG :'white',
     ERROR :"red",
     SKIN :'#F8F8F8',
-    GREEN :'#6BE42B'
+    GREEN :'#6BE42B',
+    ICONBORDER :'#DFDEE4',
+    PLACEHOLDERTEXT:'#C6C5CD'
 
 
 };
