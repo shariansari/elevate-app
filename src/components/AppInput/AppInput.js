@@ -43,13 +43,15 @@ function AppInput({ icon, placeholder, name,error }) {
                     color: Colors.BLACK,
                     flex: 1,
                     paddingVertical: Platform.OS === 'ios' ? 6 : 5,
-                    fontSize: Platform.OS === 'ios' ? 18 : 16
+                    fontSize: Platform.OS === 'ios' ? 18 : 14,
+                    fontFamily: 'Poppins-Regular',
+                    
                 }}
             />
         </View>
         <View style={{height:20}}>
             {
-                error && <Text style={{color:Colors.ERROR,fontSize:12 ,marginTop:5}}>{ ApiReducer?.apiJsonError?.[name]}</Text>
+                error && <Text style={{color:Colors.ERROR,fontSize:12 ,marginTop:5,fontFamily: 'Poppins-Regular'}}>{ ApiReducer?.apiJsonError?.[name]}</Text>
             }
         </View>
        </View>

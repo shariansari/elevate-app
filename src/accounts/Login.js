@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setApiErrorJson } from '../redux/Actions/ApiAction';
 import { SET_API_JSON_ERROR } from '../redux/ActionName/ActionName';
 import { useNavigation } from '@react-navigation/native';
+import { HitApi } from '../Api/ApiHIt';
+import { sendOtp } from '../constant/Constant';
 
 function Login() {
     const ApiReducer = useSelector(state => state.ApiReducer);
@@ -16,17 +18,20 @@ function Login() {
 
     const handleClick = () => {
         LoginValidation(ApiReducer?.apiJson).then((error) => {
-
             console.log('error', error);
-
             dispatch(setApiErrorJson(error, SET_API_JSON_ERROR))
             if (Object.keys(error).length === 0) {
-                console.log("Hit Api Here");
-                navigation.navigate("verify");
+                HitApi(ApiReducer?.apiJson,sendOtp).then((res)=>{
+                    console.log("res",res);
+                    if(res?.message === "OTP sent successfully"){
+                        navigation.navigate("verify");
+                    }    
+                })
 
             }
         })
     }
+    
     return (
         <ScrollView
             style={{ backgroundColor: Colors.LOGINBG, flex: 1 }}
