@@ -3,13 +3,12 @@ import { Alert, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Colors from '../constant/Color';
 import AppInput from '../components/AppInput/AppInput';
 import AppButton from '../components/AppButton/AppButton';
-import PasswordInput from '../components/AppInput/PasswordInput';
 import { useNavigation } from '@react-navigation/native';
 import { RegisterValidation } from '../validationScheema/RegisterValidation';
 import { useDispatch, useSelector } from 'react-redux';
 import { setApiErrorJson, setUserData } from '../redux/Actions/ApiAction';
 import { SET_API_JSON_ERROR } from '../redux/ActionName/ActionName';
-import { REGXEMAIL, STROGNPASSWORD } from '../constant/Regex';
+import { REGXEMAIL } from '../constant/Regex';
 import { HitApi } from '../Api/ApiHIt';
 import { addUser } from '../constant/Constant';
 import { _setUserData } from '../storage/Storage';
@@ -72,6 +71,7 @@ function Register() {
                             <Text style={{ color: Colors.PRIMARY, fontFamily: 'Poppins-Bold' }}>Sign in</Text>
                         </TouchableOpacity>
                     </View>
+                    
                 </View>
             </View>
         </ScrollView>
