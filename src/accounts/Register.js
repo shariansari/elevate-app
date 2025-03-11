@@ -17,8 +17,8 @@ import { _setUserData } from '../storage/Storage';
 
 function Register() {
     const ApiReducer = useSelector(state => state.ApiReducer);
-        const reduxUser = useSelector(state => state.AuthReducer);
-    
+    const reduxUser = useSelector(state => state.AuthReducer);
+
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const navigatetoSignIn = () => {
@@ -36,7 +36,7 @@ function Register() {
                     if (res?.statusCode == 201 && res?.message === "Profile created successfully") {
                         _setUserData(res?.data)
                         dispatch(setUserData(res.data))
-                        props.navigation.navigate("Dashboard")
+                        navigation.navigate("Dashboard")
                     }
                     else {
                         Alert.alert(res?.message)
@@ -46,8 +46,8 @@ function Register() {
         })
     }
 
-    console.log("reduxUser",reduxUser);
-    
+    console.log("reduxUser", reduxUser);
+
     return (
         <ScrollView
             style={{ backgroundColor: Colors.LOGINBG, flex: 1 }}

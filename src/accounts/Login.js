@@ -18,7 +18,6 @@ function Login() {
 
     const handleClick = () => {
         LoginValidation(ApiReducer?.apiJson).then((error) => {
-            console.log('error', error);
             dispatch(setApiErrorJson(error, SET_API_JSON_ERROR))
             if (Object.keys(error).length === 0) {
                 HitApi(ApiReducer?.apiJson,sendOtp).then((res)=>{

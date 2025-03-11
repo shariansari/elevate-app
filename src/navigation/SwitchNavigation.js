@@ -9,6 +9,9 @@ function SwitchNavigation() {
     const dispatch = useDispatch();
     const reduxUser = useSelector(state => state.AuthReducer);
 
+    console.log("reduxUser++++",reduxUser);
+    
+
     useEffect(() => { 
         if (reduxUser?.doc === null) {
             _getUserData().then((doc) => {
