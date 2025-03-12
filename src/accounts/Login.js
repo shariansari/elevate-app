@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { Alert, ScrollView, Text, View } from 'react-native';
 import Colors from '../constant/Color';
 import PhoneInput from '../components/AppInput/PhoneInput';
 import AppButton from '../components/AppButton/AppButton';
@@ -20,6 +20,7 @@ function Login() {
         LoginValidation(ApiReducer?.apiJson).then((error) => {
             dispatch(setApiErrorJson(error, SET_API_JSON_ERROR))
             if (Object.keys(error).length === 0) {
+
                 HitApi(ApiReducer?.apiJson,sendOtp).then((res)=>{
                     console.log("res",res);
                     if(res?.message === "OTP sent successfully"){
