@@ -1,14 +1,14 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
 import Colors from '../../constant/Color'
 
-function BookButton() {
+function BookButton({onPress}) {
   return (
-   <View style={{flexDirection:'row'}}>
+   <TouchableOpacity style={{flexDirection:'row'}} onPress={onPress}>
      <View style={{backgroundColor:Colors.PRIMARY,paddingHorizontal:20,paddingVertical:8,borderRadius:10 }} >
       <Text style={{color:'white',fontFamily:'Poppins-SemiBold'}}>Book now</Text>
     </View>
-   </View>
+   </TouchableOpacity>
   )
 }
 
