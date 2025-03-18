@@ -4,11 +4,12 @@ import NearestCard from '../components/cards/NearestCard'
 import Colors from '../constant/Color'
 import AppButton from '../components/AppButton/AppButton'
 import { useNavigation } from '@react-navigation/native'
+import Screens from '../constant/Screens'
 
 function BookingFinalized() {
     const navigation = useNavigation()
     const handlePress = () => {
-        navigation.navigate("BOOKINGSUCCESSFULLY")
+        navigation.navigate(Screens.BOOKINGSUCCESSFULLY)
     }
     return (
         <View style={{ padding: 20, backgroundColor: "white", flex: 1 }}>

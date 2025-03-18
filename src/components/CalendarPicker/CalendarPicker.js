@@ -46,12 +46,12 @@ const CalendarPicker = ({ onDateTimeSelect }) => {
               marginVertical: 6,
               borderRadius: 15,
               borderWidth: selectedDate === item.fullDate ? 2 : 1,
-              borderColor: selectedDate === item.fullDate ? Colors.PRIMARY : "#ddd",
-              backgroundColor: selectedDate === item.fullDate ? Colors.PRIMARY : 'white',
+              borderColor: selectedDate === item.fullDate ? Colors.SECONDARY : "#ddd",
+              backgroundColor: selectedDate === item.fullDate ? Colors.SECONDARY : 'white',
             }}
             onPress={() => {
               setSelectedDate(item.fullDate);
-              setSelectedTime(""); // Reset time when changing date
+              setSelectedTime("");
             }}
           >
             <Text style={{ color: selectedDate === item.fullDate ? 'white' : "#aaa", fontSize: 14 }}>{item.day}</Text>
@@ -75,27 +75,20 @@ const CalendarPicker = ({ onDateTimeSelect }) => {
               marginVertical: 6,
               borderRadius: 15,
               borderWidth: selectedTime === item ? 2 : 1,
-              borderColor: selectedTime === item ? Colors.PRIMARY : "#ddd",
-              backgroundColor: selectedTime === item ? Colors.PRIMARY : "white",
+              borderColor: selectedTime === item ? Colors.SECONDARY : "#ddd",
+              backgroundColor: selectedTime === item ? Colors.SECONDARY : "white",
               alignItems: "center",
 
             }}
             onPress={() => {
               setSelectedTime(item);
-              onDateTimeSelect(`${selectedDate} ${item}`); // Pass full date & time
+              onDateTimeSelect(`${selectedDate} ${item}`); 
             }}
           >
             <Text style={{ fontSize: 16, fontWeight: "bold", color: selectedTime === item ? "white" : "#000" }}>{item}</Text>
           </TouchableOpacity>
         ))}
       </View>
-
-      {/* Selected Date & Time Preview */}
-      {/* {selectedTime && (
-        <Text style={{ marginTop: 20, fontSize: 16, fontWeight: "bold", color: "black" }}>
-          Selected: {selectedDate} at {selectedTime}
-        </Text>
-      )} */}
     </View>
   );
 };

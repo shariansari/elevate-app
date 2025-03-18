@@ -3,6 +3,7 @@ import { Text, View, FlatList, TouchableOpacity, Image, ScrollView, Alert } from
 import CalendarPicker from "../components/CalendarPicker/CalendarPicker";
 import AppButton from "../components/AppButton/AppButton";
 import { useNavigation } from "@react-navigation/native";
+import Screens from "../constant/Screens";
 
 const specialists = [
   { id: "1", name: "Dr. John Doe", specialty: "Cardiologist", image: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80" },
@@ -20,7 +21,7 @@ function BookAppoinment() {
   };
 
   const handlePress = () => {
-   navigation.navigate("BOOKINGFINALIZED")
+   navigation.navigate(Screens.BOOKINGFINALIZED)
   };
 
   return (
@@ -28,10 +29,8 @@ function BookAppoinment() {
       <View style={{ padding: 20, backgroundColor: "white", flex: 1 }}>
         <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 20 }}>Book Appointment</Text>
 
-        {/* Calendar Picker */}
         <CalendarPicker onDateTimeSelect={handleDateTimeSelect} />
 
-        {/* Select Specialist */}
         <Text style={{ fontSize: 16, fontFamily: "Poppins-Bold", marginTop: 20 }}>Select Specialist</Text>
 
         <View style={{ marginTop: 20 }}>

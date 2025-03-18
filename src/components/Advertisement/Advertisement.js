@@ -6,11 +6,12 @@ import { Card } from 'react-native-paper'
 import Colors from '../../constant/Color'
 import BookButton from '../AppButton/BookButton'
 import { useNavigation } from '@react-navigation/native'
+import Screens from '../../constant/Screens'
 
 function Advertisement() {
   const navigation = useNavigation();
   const handleBookNowPress = () => {
-    navigation.navigate('BOOKAPPOINTMENT');
+    navigation.navigate(Screens.BOOKAPPOINTMENT);
   }
   return (
     <View>

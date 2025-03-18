@@ -5,6 +5,7 @@ import { domainId, services } from "../../constant/Constant";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedService } from "../../redux/Actions/ServiceAction";
+import Screens from "../../constant/Screens";
 
 function Services() {
   const ServiceReducer = useSelector(state => state.ServiceReducer);
@@ -54,7 +55,7 @@ function Services() {
   const handlePress = (title) =>{
     console.log("title",title);
     dispatch(setSelectedService(title))
-    navigation?.navigate('CHILDSERVICES')
+    navigation?.navigate(Screens.CHILDSERVICES)
   }
 
   const Item = ({ title, image }) => (

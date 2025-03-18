@@ -12,7 +12,7 @@ function NearestCard({ image }) {
                 <View>
                     <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 16 }}>Bella Rinova</Text>
                     <Text style={{ fontFamily: 'Poppins-Regular', color: Colors.LIGHTTEXT }}>6391 Elgin St. Celina, Delaware ...</Text>
-                    <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:10}}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
                         <View style={{ flexDirection: 'row', gap: 5 }}>
                             <Ionicons name={"star"} size={14} color={Colors.YELLOW} />
                             <Ionicons name={"star"} size={14} color={Colors.YELLOW} />
@@ -20,9 +20,9 @@ function NearestCard({ image }) {
                             <Ionicons name={"star"} size={14} color={Colors.YELLOW} />
                             <Ionicons name={"star"} size={14} color={Colors.YELLOW} />
                         </View>
-                        <View style={{flexDirection:'row',gap:2}}>
-                        <Ionicons name={"location-outline"} size={16} color={Colors.BLACK} />
-                        <Text style={{fontFamily:'Poppins-Regular'}}>5 Km</Text>
+                        <View style={{ flexDirection: 'row', gap: 2 }}>
+                            <Ionicons name={"location-outline"} size={16} color={Colors.BLACK} />
+                            <Text style={{ fontFamily: 'Poppins-Regular' }}>5 Km</Text>
                         </View>
 
 

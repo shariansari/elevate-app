@@ -9,7 +9,9 @@ const Colors = {
     GREEN :'#6BE42B',
     ICONBORDER :'#DFDEE4',
     PLACEHOLDERTEXT:'#C6C5CD',
-    YELLOW :'#FFAB36'
+    YELLOW :'#FFAB36',
+    WHITE :'white',
+    SECONDARY :'black',
 
 
 };
