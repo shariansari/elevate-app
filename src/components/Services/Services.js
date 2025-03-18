@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, FlatList, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { Text, View, FlatList, StyleSheet, Image, TouchableOpacity, Alert } from "react-native";
 import { salonistHitApi } from "../../Api/ApiHIt";
 import { domainId, services } from "../../constant/Constant";
-import Colors from "../../constant/Color";
+import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedService } from "../../redux/Actions/ServiceAction";
 
 function Services() {
+  const ServiceReducer = useSelector(state => state.ServiceReducer);
+  const dispatch = useDispatch()
+
+
+  console.log("ServiceReducer",ServiceReducer);
+  
+
+  const navigation = useNavigation()
   const [serviceList, setServiceList] = useState([]);
 
   useEffect(() => {
@@ -41,11 +51,17 @@ function Services() {
     }
   };
 
+  const handlePress = (title) =>{
+    console.log("title",title);
+    dispatch(setSelectedService(title))
+    navigation?.navigate('CHILDSERVICES')
+  }
+
   const Item = ({ title, image }) => (
-    <View style={styles.itemContainer}>
+    <TouchableOpacity style={styles.itemContainer} onPress={()=>handlePress(title)}>
       <Image source={{ uri: image }} style={styles.image} />
       <Text style={styles.title}>{title}</Text>
-    </View>
+    </TouchableOpacity>
   );
 
   return (
@@ -77,6 +93,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
     marginHorizontal: 10,
+  
   },
   image: {
     height: 80,

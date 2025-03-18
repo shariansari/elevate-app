@@ -30,8 +30,8 @@ const CalendarPicker = ({ onDateTimeSelect }) => {
   ];
 
   return (
-    <View style={{ marginVertical: 20, paddingHorizontal: 10 }}>
-      <Text style={{ fontSize: 16, marginTop: 5, fontFamily: "Poppins-SemiBold" }}>
+    <View style={{ marginVertical: 20, }}>
+      <Text style={{ fontSize: 16, marginTop: 5, fontFamily: "Poppins-Bold" }}>
         Select Date
       </Text>
 
@@ -42,60 +42,60 @@ const CalendarPicker = ({ onDateTimeSelect }) => {
             style={{
               alignItems: "center",
               paddingVertical: 12,
-              paddingHorizontal:14,
+              paddingHorizontal: 14,
               marginVertical: 6,
-              borderRadius: 10,
+              borderRadius: 15,
               borderWidth: selectedDate === item.fullDate ? 2 : 1,
-              borderColor: selectedDate === item.fullDate ? "#000" : "#ddd",
+              borderColor: selectedDate === item.fullDate ? Colors.PRIMARY : "#ddd",
               backgroundColor: selectedDate === item.fullDate ? Colors.PRIMARY : 'white',
-              color :selectedDate === item.fullDate ? "white" :"Black"
             }}
             onPress={() => {
               setSelectedDate(item.fullDate);
               setSelectedTime(""); // Reset time when changing date
             }}
           >
-            <Text style={{ color: "#aaa", fontSize: 14 }}>{item.day}</Text>
-            <Text style={{ fontSize: 16, fontWeight: "bold", color: "#000" }}>{item.date}</Text>
+            <Text style={{ color: selectedDate === item.fullDate ? 'white' : "#aaa", fontSize: 14 }}>{item.day}</Text>
+            <Text style={{ fontSize: 16, fontWeight: "bold", color: selectedDate === item.fullDate ? 'white' : "#000" }}>{item.date}</Text>
           </TouchableOpacity>
         ))}
       </View>
 
-      <Text style={{ fontSize: 14, color: "black", marginTop: 20, fontFamily: "Poppins-SemiBold" }}>
+      <Text style={{ fontSize: 16, marginTop: 30, fontFamily: "Poppins-Bold" }}>
         Select Time
       </Text>
 
       {/* Time Picker (3-Column Grid) */}
-      <View style={{ marginTop: 15, flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between" }}>
+      <View style={{ marginTop: 10, flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between" }}>
         {timeSlots.map((item, index) => (
           <TouchableOpacity
             key={index}
             style={{
-              width: "30%", // Ensures 3 columns
+              width: "30%",
               paddingVertical: 12,
               marginVertical: 6,
-              borderRadius: 10,
+              borderRadius: 15,
               borderWidth: selectedTime === item ? 2 : 1,
-              borderColor: selectedTime === item ? "#000" : "#ddd",
-              backgroundColor: selectedTime === item ? "#FFF" : "#f3f0ff",
+              borderColor: selectedTime === item ? Colors.PRIMARY : "#ddd",
+              backgroundColor: selectedTime === item ? Colors.PRIMARY : "white",
               alignItems: "center",
+
             }}
             onPress={() => {
               setSelectedTime(item);
               onDateTimeSelect(`${selectedDate} ${item}`); // Pass full date & time
             }}
           >
-            <Text style={{ fontSize: 16, fontWeight: "bold", color: "#000" }}>{item}</Text>
+            <Text style={{ fontSize: 16, fontWeight: "bold", color: selectedTime === item ? "white" : "#000" }}>{item}</Text>
           </TouchableOpacity>
         ))}
       </View>
 
       {/* Selected Date & Time Preview */}
-      {selectedTime && (
+      {/* {selectedTime && (
         <Text style={{ marginTop: 20, fontSize: 16, fontWeight: "bold", color: "black" }}>
           Selected: {selectedDate} at {selectedTime}
         </Text>
-      )}
+      )} */}
     </View>
   );
 };

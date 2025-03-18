@@ -12,6 +12,7 @@ import { getGreeting } from '../../utils/utils';
 
 function Home() {
   const reduxUser = useSelector(state => state.AuthReducer);
+  
   const userName = reduxUser?.doc?.name || "User";
 
 
