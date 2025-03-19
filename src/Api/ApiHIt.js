@@ -10,23 +10,23 @@ export const HitApi =  (json, api) => {
     return new Promise(function (resolve, reject) {
       const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(json)
       };
       fetch(api, requestOptions)
         .then(res => res.json())
         .then(
           (result) => {
-            console.log('result',result);
+            console.log('result----',result);
             resolve(result);
            
           },
           (error) => {
-  
-            resolve(error);
+            console.log('error----',error);
+            // resolve(error);
           }
         ).catch((err) => {
-          resolve(err)
+          // resolve(err)
         })
     })
   }
