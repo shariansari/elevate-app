@@ -1,16 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../BottomTabs/Home/Home';
-import Profile from '../BottomTabs/Profile/Profile';
 import Booking from '../BottomTabs/Booking/Booking';
 import Location from '../BottomTabs/Location/Location';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Colors from '../constant/Color';
+import { useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
+import Profile from '../BottomTabs/Profile/Profile';
+import Screens from '../constant/Screens';
 
 const Tab = createBottomTabNavigator();
 
 function TabNavigation() {
-  const [isVisible, setIsVisible] = useState(true)
+  const navigation = useNavigation()
+  const CartReducer = useSelector(state => state.CartReducer);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(CartReducer?.showCartBar);
+  }, [CartReducer?.showCartBar]);
+
+  console.log("CartReducer", CartReducer?.showCartBar);
+  const navigateToCart = () => {
+    navigation.navigate(Screens.CART);
+  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -26,7 +41,7 @@ function TabNavigation() {
 
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: 'tomato',
+          tabBarActiveTintColor: Colors.SECONDARY,
           tabBarInactiveTintColor: 'gray',
           tabBarStyle: { backgroundColor: 'white' },
         })}
@@ -36,12 +51,18 @@ function TabNavigation() {
         <Tab.Screen name="Location" component={Location} />
         <Tab.Screen name="Profile" component={Profile} />
       </Tab.Navigator>
+
+
       {isVisible && (
         <View style={styles.bottomBanner}>
-          <Text style={styles.bannerText}>This is a Notification Banner</Text>
-          <TouchableOpacity onPress={() => setIsVisible(false)}>
-            <Text style={styles.hideText}>Hide</Text>
-          </TouchableOpacity>
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Text style={{ color: Colors.WHITE, fontFamily: 'Poppins-Regular', fontSize: 12 }}>Service Added to cart</Text>
+            <TouchableOpacity onPress={navigateToCart}>
+              <Text style={{ color: Colors.PRIMARY, fontFamily: 'Poppins-Bold', fontSize: 13, }}>View Cart</Text>
+            </TouchableOpacity>
+
+          </View>
+
         </View>
       )}
     </View>
@@ -50,15 +71,15 @@ function TabNavigation() {
 
 const styles = StyleSheet.create({
   bottomBanner: {
-    backgroundColor: 'lightblue',
-    padding: 15,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: Colors.SECONDARY,
+    margin: 10,
+    padding: 12,
     position: 'absolute',
     bottom: 60,
     left: 0,
     right: 0,
     zIndex: 10,
+    borderRadius: 10
   },
   bannerText: {
     color: 'white',

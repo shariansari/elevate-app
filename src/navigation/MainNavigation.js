@@ -1,5 +1,4 @@
 import React from 'react'
-import { Text, View } from 'react-native'
 import TabNavigation from './TabNavigation'
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -8,6 +7,7 @@ import BookingFinalized from '../BookAppoinment/BookingFinalized';
 import BookingSuccessfully from '../BookAppoinment/BookingSuccessfully';
 import ChildServices from '../components/Services/ChildServices';
 import Screens from '../constant/Screens';
+import Cart from '../Cart/Cart';
 
 
 const Stack = createNativeStackNavigator();
@@ -20,6 +20,8 @@ function MainNavigation() {
       <Stack.Screen name={Screens.BOOKINGFINALIZED} component={BookingFinalized} />
       <Stack.Screen name={Screens.BOOKINGSUCCESSFULLY} component={BookingSuccessfully} />
       <Stack.Screen name={Screens.CHILDSERVICES} component={ChildServices} />
+      <Stack.Screen name={Screens.CART} component={Cart} />
+
 
     </Stack.Navigator>
   )

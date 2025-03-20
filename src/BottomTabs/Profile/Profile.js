@@ -1,9 +1,9 @@
 import React from 'react'
 import { Alert, Text, TouchableOpacity, View } from 'react-native'
-import { _removeUserData } from '../../storage/Storage';
-import { setUserData } from '../../redux/Actions/ApiAction';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
+import { setUserData } from '../../redux/Actions/ApiAction';
+import { _removeUserData } from '../../storage/Storage';
 
 function Profile() {
   const dispatch = useDispatch()

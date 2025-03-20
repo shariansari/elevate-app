@@ -27,7 +27,7 @@ function SwitchNavigation() {
 
     return (
         <>
-            {reduxUser?.doc ? <MainNavigation /> : <MainNavigation />}
+            {reduxUser?.doc ? <MainNavigation /> : <LoginNavigation />}
             {/* {reduxUser?.doc ? <MainNavigation /> : <MainNavigation />} */}
 
         </>

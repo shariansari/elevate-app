@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import {  View } from 'react-native';import { HitApi } from '../../Api/ApiHIt';
 import { searchBestService } from '../../constant/Constant';
 import PriceBookingCard from '../cards/PriceBookingCard';
+import { useSelector } from 'react-redux';
 
 
 function BestServices() {
+   
+    
     const [data, setData] = useState()
     useEffect(() => {
         getBestServices()

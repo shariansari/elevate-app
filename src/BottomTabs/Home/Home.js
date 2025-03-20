@@ -1,50 +1,34 @@
 import React, { useState } from 'react'
-import { Image, ScrollView, Text, View } from 'react-native'
+import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import Colors from '../../constant/Color'
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import Search from '../../components/search/Search';
 import Services from '../../components/Services/Services';
 import Advertisement from '../../components/Advertisement/Advertisement';
-import NearestCard from '../../components/cards/NearestCard';
 import { useSelector } from 'react-redux';
 import { getGreeting } from '../../utils/utils';
 import BestServices from '../../components/Services/BestServices';
+import { useNavigation } from '@react-navigation/native';
+import Screens from '../../constant/Screens';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 
 
 function Home() {
   const reduxUser = useSelector(state => state.AuthReducer);
+  const navigation = useNavigation()
 
-  const userName = reduxUser?.doc?.name || "User";
-
-
-  const getInitials = (name) => {
-    const nameParts = name.split(" ").filter(n => n);
-    if (nameParts.length >= 2) {
-      return (nameParts[0][0] + nameParts[1][0]).toUpperCase();
-    } else {
-      return nameParts[0]?.slice(0, 2).toUpperCase();
-    }
-  };
-
-
-
-  const displayText = getInitials(userName);
-
-
-
+  const navigateToCart = () =>{
+    navigation.navigate(Screens.CART)
+  }
 
   return (
     <ScrollView>
-      <View style={{ backgroundColor: 'white', paddingHorizontal: 20, paddingVertical: 30 }}>
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+      <View style={{ backgroundColor: 'white', paddingHorizontal: 20, paddingVertical:20 ,paddingBottom:50}}>
+        <View style={{ flexDirection: "row", justifyContent: "space-between" ,alignItems:'center'}}>
           <Image source={require('../../AppImages/Board.png')} style={{ height: 50, width: 100, resizeMode: 'contain', marginLeft: -5 }} />
-          {userName ? (
-            <View style={{ height: 50, width: 50, borderRadius: 10, backgroundColor: Colors.ICONBORDER, alignItems: 'center', justifyContent: 'center' }}>
-              <Text style={{ fontSize: 18, fontWeight: 'bold', color: Colors.BLACK }}>{displayText}</Text>
-            </View>
-          ) : (
-            <Image source={require('../../AppImages/girl.jpeg')} style={{ height: 50, width: 50, borderRadius: 10 }} />
-          )}
+       <TouchableOpacity onPress={navigateToCart}>
+       <Ionicons name={'cart-outline'} size={30} color={Colors.SECONDARY} />
+       </TouchableOpacity>
         </View>
         <View style={{ marginTop: Platform.OS === 'ios' ? 25 : 25 }}>
           <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 25 }}>
