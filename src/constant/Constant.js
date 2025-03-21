@@ -12,8 +12,8 @@ export const verifyOtp =  UserService +'verifyOtp'
 export  const searchBestService = BaseUrl + OurBestService + 'searchBestService'
 export const addCart = BaseUrl + CartService + 'addCart'
 export const searchCart = BaseUrl + CartService + 'searchCart'
-export const deletecart = BaseUrl + CartService + 'deletecart'
-
+export const deleteCart = BaseUrl + CartService + 'deleteCart'
+// export const deleteByServiceAndUser = BaseUrl + CartService + 'deleteByServiceAndUser'
 
 export const domainId = '21676'
 

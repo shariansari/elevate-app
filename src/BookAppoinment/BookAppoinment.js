@@ -28,9 +28,7 @@ function BookAppoinment() {
     <ScrollView>
       <View style={{ padding: 20, backgroundColor: "white", flex: 1 }}>
         <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 20 }}>Book Appointment</Text>
-
         <CalendarPicker onDateTimeSelect={handleDateTimeSelect} />
-
         <Text style={{ fontSize: 16, fontFamily: "Poppins-Bold", marginTop: 20 }}>Select Specialist</Text>
 
         <View style={{ marginTop: 20 }}>

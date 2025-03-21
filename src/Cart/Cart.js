@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View, Vibration } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Colors from '../constant/Color';
 import { HitApi } from '../Api/ApiHIt';
-import { searchCart } from '../constant/Constant';
+import { addCart, deleteCart, searchCart } from '../constant/Constant';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
+import Screens from '../constant/Screens';
 
 function Cart() {
   const reduxUser = useSelector((state) => state.AuthReducer);
   const [cartData, setCartData] = useState([]);
   const navigation = useNavigation();
 
-  // Navigate back
   const handleBack = () => {
     navigation.goBack();
   };
 
-  // Fetch Cart Items
   useEffect(() => {
     getCartItems();
   }, []);
@@ -35,7 +34,7 @@ function Cart() {
       const res = await HitApi(json, searchCart);
 
       if (res?.message === 'Cart items retrieved successfully') {
-        formatData(res?.data);
+        setCartData(res?.data); // ✅ Fixed state update
       } else {
         console.error('Failed to fetch cart items:', res?.message);
       }
@@ -44,39 +43,52 @@ function Cart() {
     }
   };
 
-  // Format Cart Data
-  const formatData = (data) => {
-    let formattedCart = {};
-
-    data.forEach((item) => {
-      const { serviceName, price } = item;
-
-      if (formattedCart[serviceName]) {
-        formattedCart[serviceName].totalPrice += parseFloat(price);
-        formattedCart[serviceName].count += 1;
-      } else {
-        formattedCart[serviceName] = {
-          serviceName,
-          totalPrice: parseFloat(price),
-          count: 1
-        };
-      }
-    });
-
-    setCartData(Object.values(formattedCart));
-  };
 
   const handleBookAppointment = () => {
-    console.log('Booking appointment...');
+    navigation.navigate(Screens.BOOKAPPOINTMENT)
   };
 
-  const handleDecrease = (service) =>{
-    
+  const addToCart = (service) => {
+    Vibration.vibrate(500);
+    console.log("service++++", service);
+    const json = {
+      serviceId: service?.serviceId?._id,
+      userId: reduxUser?.doc?._id,
+    };
 
+    HitApi(json,addCart).then((res)=>{
+      console.log("res",res);
+      if(res?.message === "Service added to Cart successfully"){
+        getCartItems()
+      }
+      
+    })
   }
-  const handleIncrease = () =>{
 
+  const removeFromCart = (service) =>{
+    Vibration.vibrate(500);
+    const json = {
+      serviceId: service?.serviceId?._id,
+      userId: reduxUser?.doc?._id,
+    };
+
+    HitApi(json,deleteCart).then((res)=>{
+      if(res?.message === "Cart service deleted successfully"){
+        getCartItems()
+      }
+    })
   }
+
+  const increaseQuantity = (service) => {
+    addToCart(service);
+  };
+
+  const decreaseQuantity = (service) => {
+    removeFromCart(service);
+  };
+
+
+  console.log("cartData", cartData);
 
   return (
     <View style={{ flex: 1, padding: 20 }}>
@@ -93,23 +105,37 @@ function Cart() {
       {cartData.length > 0 ? (
         <View style={{ marginTop: 20, flex: 1 }}>
           {cartData.map((service, index) => (
-            <View key={index} style={{ flexDirection: 'row', alignItems: 'center', gap: 15, borderWidth: 1, borderRadius: 10, paddingHorizontal: 15, paddingVertical: 10, marginBottom: 10,borderColor:Colors.PRIMARY }}>
+            <View
+              key={service._id || index}
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 15,
+                borderWidth: 1,
+                borderRadius: 10,
+                paddingHorizontal: 15,
+                paddingVertical: 10,
+                marginBottom: 10,
+                borderColor: Colors.PRIMARY
+              }}>
               <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80' }}
                 style={{ height: 60, width: 60, borderRadius: 20 }}
               />
 
               <View style={{ flex: 1 }}>
-                <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 16 }}>{service.serviceName}</Text>
+                <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 16 }}>{service?.serviceId?.service}</Text>
                 <Text style={{ fontFamily: 'Poppins-Regular', color: Colors.PRIMARY }}>{`Price: ₹${service.totalPrice}`}</Text>
               </View>
-              <View style={{backgroundColor:Colors.SECONDARY,paddingHorizontal:15,borderRadius:10,flexDirection:'row',gap:10,paddingVertical:5}}>
-              <TouchableOpacity onPress={()=>handleDecrease(service)}>
-                <Text style={{color:'white',fontFamily:'Poppins-SemiBold'}}>-</Text>
+
+              {/* Quantity Controls */}
+              <View style={{ backgroundColor: Colors.SECONDARY, paddingHorizontal: 15, borderRadius: 10, flexDirection: 'row', gap: 10, paddingVertical: 5 }}>
+                <TouchableOpacity onPress={() => decreaseQuantity(service)}>
+                  <Text style={{ color: 'white', fontFamily: 'Poppins-SemiBold' }}>-</Text>
                 </TouchableOpacity>
-                <Text style={{color:'white',fontFamily:'Poppins-SemiBold'}}>{service?.count}</Text>
-                <TouchableOpacity  onPress={()=>handleIncrease(service)}>
-                <Text style={{color:'white',fontFamily:'Poppins-SemiBold'}}>+</Text>
+                <Text style={{ color: 'white', fontFamily: 'Poppins-SemiBold' }}>{service?.count}</Text>
+                <TouchableOpacity onPress={() => increaseQuantity(service)}>
+                  <Text style={{ color: 'white', fontFamily: 'Poppins-SemiBold' }}>+</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -119,7 +145,6 @@ function Cart() {
         <Text style={{ textAlign: 'center', marginTop: 20 }}>No items in cart</Text>
       )}
 
-      {/* Book Appointment Button */}
       {cartData.length > 0 && (
         <TouchableOpacity
           onPress={handleBookAppointment}
@@ -139,5 +164,4 @@ function Cart() {
     </View>
   );
 }
-
 export default Cart;

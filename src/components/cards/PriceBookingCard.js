@@ -3,7 +3,7 @@ import { Image, Text, TouchableOpacity, View, Vibration } from 'react-native';
 import Colors from '../../constant/Color';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { HitApi } from '../../Api/ApiHIt';
-import { addCart, deletecart } from '../../constant/Constant';
+import { addCart, deleteCart } from '../../constant/Constant';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCartFlag } from '../../redux/Actions/CartAction';
 
@@ -42,10 +42,6 @@ function PriceBookingCard({ data }) {
             console.log('Adding to cart:', json);
 
             const res = await HitApi(json, addCart);
-
-         
-            
-
             if (res?.message === "Service added to Cart successfully") {
                 dispatch(setCartFlag(true));
                 setQuantity(prev => prev + 1);
@@ -59,11 +55,7 @@ function PriceBookingCard({ data }) {
         }
     };
 
-    const removeFromCart = async () => {
-
-
-       
-        
+    const removeFromCart = async () => { 
         try {
             Vibration.vibrate(500);
 
@@ -72,11 +64,14 @@ function PriceBookingCard({ data }) {
                 return;
             }
 
-            const json = { _id: data._id };
+            const json = { 
+                serviceId: data._id ,
+                userId: reduxUser?.doc?._id,
+            };
             console.log("Removing from cart:", json);
-            const res = await HitApi(json, deletecart);
+            const res = await HitApi(json, deleteCart);
 
-            if (res?.message === "Item removed from Cart successfully") {
+            if (res?.message === "Cart service deleted successfully") {
                 if (quantity <= 1) {
                     setQuantity(0);
                     dispatch(setCartFlag(false));
